@@ -1,0 +1,3 @@
+rootProject.name = 'sprite-fighter'
+include '3D'
+
