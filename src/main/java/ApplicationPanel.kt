@@ -1,4 +1,4 @@
-import common.ScenerioProperties
+import properties.ScenerioProperties
 import drawable.two.dimensional.background.BackgroundDefault
 import drawable.two.dimensional.things.sprite.ImageFighter
 import logic.loops.MoveAndFight

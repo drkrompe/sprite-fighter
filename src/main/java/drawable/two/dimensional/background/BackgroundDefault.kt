@@ -1,6 +1,6 @@
 package drawable.two.dimensional.background
 
-import common.PanelProperties
+import properties.PanelProperties
 import java.awt.Color
 import java.awt.Graphics
 

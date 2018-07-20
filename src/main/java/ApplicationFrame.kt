@@ -1,4 +1,4 @@
-import common.FrameProperties
+import properties.FrameProperties
 import java.awt.Dimension
 import javax.swing.JFrame
 

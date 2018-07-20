@@ -1,4 +1,4 @@
-package common
+package properties
 
 object PanelProperties {
     val width = 1920

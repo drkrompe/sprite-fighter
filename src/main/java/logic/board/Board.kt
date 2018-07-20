@@ -1,6 +1,6 @@
 package logic.board
 
-import common.BoardProperties
+import properties.BoardProperties
 import java.awt.Point
 
 

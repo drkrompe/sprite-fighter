@@ -1,4 +1,4 @@
-package common
+package properties
 
 object FrameProperties {
     val title = "Sprite ImageFighter"

@@ -1,4 +1,4 @@
-package common
+package properties
 
 import logic.unitLogic.units.ParticleFighterUnitLogic
 import things.Entity
