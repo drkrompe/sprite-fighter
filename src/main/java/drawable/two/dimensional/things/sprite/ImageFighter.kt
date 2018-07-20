@@ -11,18 +11,13 @@ import javax.imageio.ImageIO
 
 object ImageFighter {
     val dimension = Dimension(30, 30)
-    val warriorAlive: Image = ImageIO.read(File("E:\\ideaWorkspace\\sprite-fighter\\resources\\warrior.png"))
-    val warriorDead: Image = ImageIO.read( File("E:\\ideaWorkspace\\sprite-fighter\\resources\\warriordead.png"))
+    private val warriorAlive: Image = ImageIO.read(File("E:\\ideaWorkspace\\sprite-fighter\\resources\\warrior.png"))
+    private val warriorDead: Image = ImageIO.read( File("E:\\ideaWorkspace\\sprite-fighter\\resources\\warriordead.png"))
 
-//    fun setup(){
-//        warriorAlive = ImageIO.read(File("E:\\ideaWorkspace\\sprite-fighter\\resources\\warrior.png"))
-//        warriorDead = ImageIO.read( File("E:\\ideaWorkspace\\sprite-fighter\\resources\\warriordead.png"))
-//    }
+    private val drawAlive: (Graphics?, Point) -> Unit = { g, p -> g?.drawImage(warriorAlive, p.x, p.y, dimension.width, dimension.height, null) }
+    private val drawDead: (Graphics?, Point) -> Unit = { g, p -> g?.drawImage(warriorDead, p.x, p.y, dimension.width, dimension.height, null) }
 
-    val drawAlive: (Graphics?, Point) -> Unit = { g, p -> g?.drawImage(warriorAlive, p.x, p.y, dimension.width, dimension.height, null) }
-    val drawDead: (Graphics?, Point) -> Unit = { g, p -> g?.drawImage(warriorDead, p.x, p.y, dimension.width, dimension.height, null) }
-
-    val drawAllParticleFighters: (g: Graphics?) -> Unit = { g ->
+    val drawAllImageFighters: (g: Graphics?) -> Unit = { g ->
         MasterListOfThings.list.map {
             when (it.body) {
                 is ParticleFighter -> {

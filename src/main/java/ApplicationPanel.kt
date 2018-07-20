@@ -24,7 +24,7 @@ class ApplicationPanel : JPanel(), Runnable {
     override fun paintComponent(g: Graphics?) {
         super.paintComponent(g)
         BackgroundDefault.draw(g)
-        ImageFighter.drawAllParticleFighters(g)
+        ImageFighter.drawAllImageFighters(g)
     }
 
 }
