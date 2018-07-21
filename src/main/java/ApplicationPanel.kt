@@ -2,6 +2,7 @@ import properties.ScenerioProperties
 import drawable.two.dimensional.background.BackgroundDefault
 import drawable.two.dimensional.things.sprite.ImageFighter
 import logic.loops.MoveAndFight
+import threads.TeamSyncThreadBehavior
 import java.awt.Graphics
 import javax.swing.JPanel
 
@@ -15,6 +16,7 @@ class ApplicationPanel : JPanel(), Runnable {
 
     override fun run() {
         ScenerioProperties.setup()
+        val testMulti = Thread(TeamSyncThreadBehavior, "Master").start()
         while (true) {
             repaint()
             MoveAndFight.loop()

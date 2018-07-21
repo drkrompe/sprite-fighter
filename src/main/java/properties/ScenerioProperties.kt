@@ -9,9 +9,9 @@ import java.awt.Point
 
 object ScenerioProperties {
 
-    val newParticleFighter: (Point, Dimension) -> ParticleFighter = { p, d -> ParticleFighter(p, d) }
-    val newParticleFighterUnitLogic: (ParticleFighter) -> ParticleFighterUnitLogic = { it -> ParticleFighterUnitLogic(it) }
-    val newEntity: (ParticleFighterUnitLogic) -> Entity = { it -> Entity(it.particleFighter, it) }
+    private val newParticleFighter: (Point, Dimension) -> ParticleFighter = { p, d -> ParticleFighter(p, d) }
+    private val newParticleFighterUnitLogic: (ParticleFighter) -> ParticleFighterUnitLogic = { it -> ParticleFighterUnitLogic(it) }
+    private val newEntity: (ParticleFighterUnitLogic) -> Entity = { it -> Entity(it.particleFighter, it) }
 
     fun setup() {
 
@@ -31,13 +31,13 @@ object ScenerioProperties {
         println("done")
     }
 
-    fun genPoint(): Point {
+    private fun genPoint(): Point {
         val x = (Math.random() * 1900).toInt()
         val y = (Math.random() * 1000).toInt()
         return Point(x, y)
     }
 
-    fun printDetails(entity: Entity) {
+    private fun printDetails(entity: Entity) {
         println(entity.body.location)
     }
 

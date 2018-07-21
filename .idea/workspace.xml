@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d72b2e-bd34-48d5-8a33-20b18c435c3b" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/properties/TeamsProperties.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/shared/resources/Team.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/shared/resources/Teams.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/threads/TeamSyncSemaphore.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/threads/TeamSyncThreadBehavior.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/threads/TeamThreadBehavior.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/common/BoardProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/common/FrameProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/common/PanelProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/common/ScenerioProperties$newEntity$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/common/ScenerioProperties$newParticleFighter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/common/ScenerioProperties$newParticleFighterUnitLogic$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/common/ScenerioProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/drawable/two/dimensional/things/sprite/ImageFighter$drawAllParticleFighters$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ApplicationPanel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApplicationPanel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/properties/ScenerioProperties.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/properties/ScenerioProperties.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -71,68 +87,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UnitLogic.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/logic/unitLogic/units/UnitLogic.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApplicationFrame.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ApplicationFrame.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#81#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApplicationPanel.kt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ApplicationPanel.kt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ApplicationPanel.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BackgroundDefault.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/drawable/two/dimensional/background/BackgroundDefault.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+            <state relative-caret-position="180">
+              <caret line="18" column="72" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ScenerioProperties.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/common/ScenerioProperties.kt">
+        <entry file="file://$PROJECT_DIR$/src/main/java/properties/ScenerioProperties.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+            <state relative-caret-position="135">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoveAndFight.kt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MoveAndFight.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/logic/loops/MoveAndFight.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageFighter.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/drawable/two/dimensional/things/sprite/ImageFighter.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TeamThreadBehavior.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/threads/TeamThreadBehavior.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Team.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/shared/resources/Team.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Teams.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/shared/resources/Teams.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TeamSyncThreadBehavior.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/threads/TeamSyncThreadBehavior.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TeamSyncSemaphore.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/threads/TeamSyncSemaphore.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+              <folding>
+                <element signature="e#17#88#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Semaphore.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/Semaphore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="424" column="16" selection-start-line="424" selection-start-column="16" selection-end-line="424" selection-end-column="16" />
+              <folding>
+                <element signature="e#9671#9672#0" expanded="true" />
+                <element signature="e#9749#9750#0" expanded="true" />
+                <element signature="e#15885#15886#0" expanded="true" />
+                <element signature="e#15922#15923#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -690,16 +739,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/things/README" />
-        <option value="$PROJECT_DIR$/src/main/java/drawable/README" />
-        <option value="$PROJECT_DIR$/src/main/java/App.kt" />
-        <option value="$PROJECT_DIR$/src/main/java/logic/board.kt" />
-        <option value="$PROJECT_DIR$/src/main/java/logicTest/BoardTest.java" />
-        <option value="$PROJECT_DIR$/settings.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/common/BoardProperties.kt" />
-        <option value="$PROJECT_DIR$/src/main/java/logic/Board.kt" />
-        <option value="$PROJECT_DIR$/src/main/java/logicTest/BoardTest.kt" />
-        <option value="$PROJECT_DIR$/src/main/java/logic/UnitLogic/UnitAction.kt" />
         <option value="$PROJECT_DIR$/src/main/java/logic/UnitLogic/UnitLogic.kt" />
         <option value="$PROJECT_DIR$/src/main/java/logic/UnitLogic/ParticleFighterUnitLogic.kt" />
         <option value="$PROJECT_DIR$/src/main/java/logic/unit/logic/UnitAction.kt" />
@@ -737,10 +776,20 @@
         <option value="$PROJECT_DIR$/src/main/java/drawable/three/dimensional/Hello3d.kt" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/ApplicationFrame.kt" />
-        <option value="$PROJECT_DIR$/src/main/java/ApplicationPanel.kt" />
         <option value="$PROJECT_DIR$/src/main/java/drawable/two/dimensional/background/BackgroundDefault.kt" />
         <option value="$PROJECT_DIR$/src/main/java/common/ScenerioProperties.kt" />
         <option value="$PROJECT_DIR$/src/main/java/logic/loops/MoveAndFight.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/drawable/two/dimensional/things/sprite/ImageFighter.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/properties/ScenerioProperties.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/properties/TeamsProperties.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/threads/TeamSyncSemaphore.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/shared/resources/Team.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/shared/resources/Teams.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/threads/TeamSyncThread.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/threads/TeamSyncThreadBehavior.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/threads/TeamThread.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/threads/TeamThreadBehavior.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/ApplicationPanel.kt" />
       </list>
     </option>
   </component>
@@ -782,6 +831,38 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sprite-fighter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sprite-fighter" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="properties" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sprite-fighter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sprite-fighter" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sprite-fighter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sprite-fighter" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="things" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sprite-fighter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sprite-fighter" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="threads" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1047,18 +1128,19 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.31741935" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.31640625" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3203125" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.6536458" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21875" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3294271" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.20182292" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35024753" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.41584158" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.328125" />
       <window_info id="Learn" order="2" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.41212872" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1073,7 +1155,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.3303226" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -1141,38 +1222,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/drawable/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="60" selection-start-line="1" selection-start-column="60" selection-end-line="1" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ApplicationLoop.kt" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/things/PositionalProperties.kt" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/BoardProperties.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/logic/UnitLogic/thihng" />
-    <entry file="file://$PROJECT_DIR$/src/test/ParticleFighterUnitLogicTest.kt" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/runners/BlockJUnit4ClassRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar!/org/junit/runners/ParentRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1272,7 +1321,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/PanelProperties.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/java/properties/PanelProperties.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
@@ -1314,13 +1363,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="83">
           <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/drawable/two/dimensional/things/sprite/ImageFighter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1409,24 +1451,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ApplicationFrame.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/3D/build.gradle" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/ApplicationPanel.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1441,10 +1466,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/common/ScenerioProperties.kt">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ApplicationFrame.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="165">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/properties/TeamsProperties.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/drawable/two/dimensional/things/sprite/ImageFighter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1452,6 +1494,82 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/util/concurrent/Semaphore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="424" column="16" selection-start-line="424" selection-start-column="16" selection-end-line="424" selection-end-column="16" />
+          <folding>
+            <element signature="e#9671#9672#0" expanded="true" />
+            <element signature="e#9749#9750#0" expanded="true" />
+            <element signature="e#15885#15886#0" expanded="true" />
+            <element signature="e#15922#15923#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_131/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="140" column="34" selection-start-line="140" selection-start-column="34" selection-end-line="140" selection-end-column="34" />
+          <folding>
+            <element signature="e#38621#38622#0" expanded="true" />
+            <element signature="e#38666#38667#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/properties/ScenerioProperties.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/threads/TeamSyncSemaphore.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+          <folding>
+            <element signature="e#17#88#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/threads/TeamThreadBehavior.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/threads/TeamSyncThreadBehavior.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/shared/resources/Teams.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/shared/resources/Team.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ApplicationPanel.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="18" column="72" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
         </state>
       </provider>
     </entry>
