@@ -7,7 +7,7 @@ import kotlin.math.roundToInt
 import things.Entity as CopiedEntity
 
 object Teams {
-    private var list = listOf<Team>()
+    private var list = mutableListOf<Team>()
 
     fun findOtherEntityCopy(otherId: UUID?, selfTeam: Int): CopiedEntity? {
         var foundEntity: CopiedEntity? = null
@@ -33,8 +33,17 @@ object Teams {
         return foundEntity
     }
 
+    fun getTeams(): List<Team> {
+        return list
+    }
+
     fun getTeam(which: Int): Team {
         return list[which]
+    }
+
+    fun createTeam(team: Int): Team {
+        list.add(Team(team))
+        return list[team]
     }
 
     fun getOther(self: Int): Team? {

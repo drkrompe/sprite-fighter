@@ -15,9 +15,9 @@ class SharingList {
             null -> {
             }
             else -> {
-                entity.lock.acquire()
+                println("\t\t\t\tUpdatingEntity")
                 shared.resources.updateEntity(entity, copiedEntity)
-                entity.lock.release()
+                println("\t\t\t\tUpdatingEntity - finish")
             }
         }
     }

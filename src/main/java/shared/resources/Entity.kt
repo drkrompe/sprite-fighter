@@ -1,6 +1,7 @@
 package shared.resources
 
 import drawable.two.dimensional.things.Draw
+import logic.unitLogic.units.ParticleFighterUnitLogic
 import logic.unitLogic.units.UnitLogic
 import things.Thing
 import java.util.*
@@ -23,5 +24,14 @@ fun updateEntity(entity: Entity, copiedEntity: CopiedEntity) {
     entity.body.health = copiedEntity.body.health
     entity.body.nextLocation = copiedEntity.body.nextLocation
     entity.dead = copiedEntity.dead
+    when (entity.soul) {
+        is ParticleFighterUnitLogic -> {
+            when (copiedEntity.soul) {
+                is ParticleFighterUnitLogic -> {
+                    entity.soul.currentTargetId = copiedEntity.soul.currentTargetId
+                }
+            }
+        }
+    }
     entity.lock.release()
 }

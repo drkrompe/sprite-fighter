@@ -28,7 +28,7 @@ object MoveAndFight : LoopBehavior {
                                 }
                             }
                         }
-                        when (entity.soul.determineNextAction()) {
+                        when (entity.soul.determineNextAction(entity.team)) {
                             is UnitAction.MoveAction -> {
                                 entity.body.location = Movement.determineNextLocation(self = entity.body, target = MasterListOfThings.find(entity.soul.currentTargetId)?.body)
                                 entity.soul.particleFighter = (entity.body as ParticleFighter)

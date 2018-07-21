@@ -1,7 +1,10 @@
 import properties.ScenerioProperties
 import drawable.two.dimensional.background.BackgroundDefault
 import drawable.two.dimensional.things.sprite.ImageFighter
+import drawable.two.dimensional.things.sprite.ParticleFighter
 import logic.loops.MoveAndFight
+import shared.resources.Teams
+import things.toCopy
 import threads.TeamSyncThreadBehavior
 import java.awt.Graphics
 import javax.swing.JPanel
@@ -16,16 +19,44 @@ class ApplicationPanel : JPanel(), Runnable {
 
     override fun run() {
         ScenerioProperties.setup()
-        val testMulti = Thread(TeamSyncThreadBehavior, "Master").start()
-        while (true) {
+        Thread(TeamSyncThreadBehavior, "Master-TeamSync-Thread").start()
+        println("Created master thread")
+        while(true){
             repaint()
-            MoveAndFight.loop()
         }
     }
 
     override fun paintComponent(g: Graphics?) {
         super.paintComponent(g)
         BackgroundDefault.draw(g)
+        Teams.getTeams().map {
+            it.list.getList().map {
+                it.lock.acquire()
+                val copiedEntity = toCopy(it)
+                it.lock.release()
+                when(copiedEntity.draw){
+                    is ParticleFighter -> {
+                        when(copiedEntity.dead){
+                            true -> copiedEntity.draw.draw(g, copiedEntity.body.location, copiedEntity.dead, copiedEntity.team)
+                        }
+                    }
+                }
+            }
+        }
+        Teams.getTeams().map {
+            it.list.getList().map {
+                it.lock.acquire()
+                val copiedEntity = toCopy(it)
+                it.lock.release()
+                when(copiedEntity.draw){
+                    is ParticleFighter -> {
+                        when(copiedEntity.dead){
+                            false -> copiedEntity.draw.draw(g, copiedEntity.body.location, copiedEntity.dead, copiedEntity.team)
+                        }
+                    }
+                }
+            }
+        }
         ImageFighter.drawAllImageFighters(g)
     }
 

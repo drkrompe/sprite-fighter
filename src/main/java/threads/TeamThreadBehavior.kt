@@ -8,8 +8,9 @@ class TeamThreadBehavior(private val team: Int, private val loopBehavior: LoopBe
     val debug: Boolean = true
 
     override fun run() {
+        println("\t\tTeam<$team>starting tick compute")
         tickAction()
-        println("Team<$team> tick done -> release")
+        println("\t\tTeam<$team> tick done -> releaseSyncLock")
         TeamSyncSemaphore.release()
     }
 

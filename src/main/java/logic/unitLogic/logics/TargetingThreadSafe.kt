@@ -1,6 +1,7 @@
 package logic.unitLogic.logics
 
 import jdk.nashorn.internal.runtime.JSType
+import shared.resources.Team
 import shared.resources.Teams
 import things.Entity
 import things.toCopy
@@ -12,13 +13,18 @@ object TargetingThreadSafe {
 
     fun findNearestNonDeadTarget(self: Entity, team: Int): UUID? {
         val mapPositionToDistance = mutableMapOf<UUID, Double>()
-        Teams.getTeam(team).list.getList().map {
-            it.lock.acquire()
-            val copiedOtherEntity = toCopy(it)
-            it.lock.release()
-            when(copiedOtherEntity.dead){
-                false -> {
-                    mapPositionToDistance[copiedOtherEntity.id] = dist(self.body.location, copiedOtherEntity.body.location)
+        val otherTeam = Teams.getOther(team)
+        when(otherTeam){
+            is Team -> {
+                otherTeam.list.getList().map {
+                    it.lock.acquire()
+                    val copiedOtherEntity = toCopy(it)
+                    it.lock.release()
+                    when(copiedOtherEntity.dead){
+                        false -> {
+                            mapPositionToDistance[copiedOtherEntity.id] = dist(self.body.location, copiedOtherEntity.body.location)
+                        }
+                    }
                 }
             }
         }
