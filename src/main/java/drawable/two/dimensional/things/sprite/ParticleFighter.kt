@@ -1,8 +1,6 @@
 package drawable.two.dimensional.things.sprite
 
 import drawable.two.dimensional.things.Draw
-import things.MasterListOfThings
-import things.sprite.ParticleFighter
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics
@@ -24,17 +22,6 @@ object ParticleFighter : Draw {
                 }
             }
             g?.fillOval(location.x, location.y, dimension.width, dimension.height)
-        }
-    }
-
-
-    val drawAllParticleFighters: (g: Graphics?) -> Unit = { g ->
-        MasterListOfThings.list.map {
-            when (it.body) {
-                is ParticleFighter -> {
-                    draw(g, it.body.location, it.dead, it.team)
-                }
-            }
         }
     }
 }

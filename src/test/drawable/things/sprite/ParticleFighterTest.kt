@@ -1,9 +1,9 @@
 package drawable.things.sprite
 
-import common.FrameProperties
-import common.PanelProperties
-import drawable.background.BackgroundDefault
+import drawable.two.dimensional.background.BackgroundDefault
+import drawable.two.dimensional.things.sprite.ParticleFighter
 import org.junit.Test
+import properties.FrameProperties
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics
@@ -16,14 +16,14 @@ class ParticleFighterTest {
     @Test
     fun `when panel added to frame will show the particlefighter as being drawn`() {
         val panel = HelperPanel(ParticleFighter.draw)
-        val frame = HelperFrame(panel)
+        HelperFrame(panel)
 
         Thread.sleep(6000)
     }
 
 }
 
-class HelperPanel(val funct: (Graphics?, location: Point) -> Unit) : JPanel() {
+class HelperPanel(val funct: (Graphics?, location: Point, dead: Boolean, team: Int) -> Unit) : JPanel() {
     init {
         isVisible = true
     }
@@ -32,7 +32,7 @@ class HelperPanel(val funct: (Graphics?, location: Point) -> Unit) : JPanel() {
         super.paintComponent(g)
         BackgroundDefault.draw(g)
         g?.color = Color.white
-        funct(g, Point(10, 10))
+        funct(g, Point(10, 10), false, 0)
     }
 }
 

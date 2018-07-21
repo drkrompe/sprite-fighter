@@ -1,5 +1,6 @@
 package logic.unitLogic
 
+import logic.unitLogic.logics.Movement
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import things.sprite.ParticleFighter

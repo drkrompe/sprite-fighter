@@ -3,9 +3,9 @@ package logic.unitLogic.units
 import jdk.nashorn.internal.runtime.JSType.toDouble
 import logic.unitLogic.UnitAction
 import logic.unitLogic.UnitStatus
-import logic.unitLogic.logics.Targeting.dist
+import logic.unitLogic.logics.TargetingThreadSafe
+import logic.unitLogic.logics.TargetingThreadSafe.dist
 import shared.resources.Teams
-import things.MasterListOfThings
 import things.Thing
 import things.sprite.ParticleFighter
 import java.awt.Point
@@ -32,7 +32,7 @@ class ParticleFighterUnitLogic(var particleFighter: ParticleFighter) : UnitLogic
         }
     }
 
-    private fun isInAttackRange(team: Int): Boolean {
+    fun isInAttackRange(team: Int): Boolean {
         val tarId = currentTargetId
         return when (tarId) {
             null -> false

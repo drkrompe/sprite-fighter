@@ -2,7 +2,6 @@ import properties.ScenerioProperties
 import drawable.two.dimensional.background.BackgroundDefault
 import drawable.two.dimensional.things.sprite.ImageFighter
 import drawable.two.dimensional.things.sprite.ParticleFighter
-import logic.loops.MoveAndFight
 import shared.resources.Teams
 import things.toCopy
 import threads.TeamSyncThreadBehavior
@@ -57,7 +56,6 @@ class ApplicationPanel : JPanel(), Runnable {
                 }
             }
         }
-        ImageFighter.drawAllImageFighters(g)
     }
 
 }

@@ -1,7 +1,6 @@
 package drawable.two.dimensional.things.sprite
 
 import drawable.two.dimensional.things.Draw
-import things.MasterListOfThings
 import things.sprite.ParticleFighter
 import java.awt.Dimension
 import java.awt.Graphics
@@ -17,17 +16,4 @@ object ImageFighter : Draw {
 
     private val drawAlive: (Graphics?, Point) -> Unit = { g, p -> g?.drawImage(warriorAlive, p.x, p.y, dimension.width, dimension.height, null) }
     private val drawDead: (Graphics?, Point) -> Unit = { g, p -> g?.drawImage(warriorDead, p.x, p.y, dimension.width, dimension.height, null) }
-
-    val drawAllImageFighters: (g: Graphics?) -> Unit = { g ->
-        MasterListOfThings.list.map {
-            when (it.body) {
-                is ParticleFighter -> {
-                    when (it.dead) {
-                        true -> drawDead(g, it.body.location)
-                        false -> drawAlive(g, it.body.location)
-                    }
-                }
-            }
-        }
-    }
 }
