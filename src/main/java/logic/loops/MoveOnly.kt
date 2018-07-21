@@ -1,16 +1,16 @@
 package logic.loops
 
-import logic.unitLogic.logics.Movement
-import logic.unitLogic.units.ParticleFighterUnitLogic
-import logic.unitLogic.logics.Targeting
 import logic.unitLogic.UnitAction
+import logic.unitLogic.logics.Movement
+import logic.unitLogic.logics.Targeting
+import logic.unitLogic.units.ParticleFighterUnitLogic
 import things.Entity
 import things.MasterListOfThings
 import things.sprite.ParticleFighter
 
-object MoveOnly {
+object MoveOnly : LoopBehavior {
 
-    fun loop() {
+    override fun loopCycle() {
         MasterListOfThings.list.map { entity -> orderOfOperations(entity) }
         Thread.sleep(20)
     }

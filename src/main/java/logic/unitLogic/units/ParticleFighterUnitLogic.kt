@@ -1,10 +1,12 @@
 package logic.unitLogic.units
 
 import jdk.nashorn.internal.runtime.JSType.toDouble
-import logic.unitLogic.logics.Targeting.dist
 import logic.unitLogic.UnitAction
 import logic.unitLogic.UnitStatus
+import logic.unitLogic.logics.Targeting.dist
+import shared.resources.Teams
 import things.MasterListOfThings
+import things.Thing
 import things.sprite.ParticleFighter
 import java.awt.Point
 import java.lang.Math.sqrt
@@ -18,11 +20,11 @@ class ParticleFighterUnitLogic(var particleFighter: ParticleFighter) : UnitLogic
         return toDouble(x) * toDouble(x)
     }
 
-    override fun determineNextAction(): UnitAction {
+    override fun determineNextAction(team: Int): UnitAction {
         return when (particleFighter.statusCompare(UnitStatus.Dead())) {
             true -> UnitAction.NoAction()
             else -> {
-                when (isInAttackRange()) {
+                when (isInAttackRange(team)) {
                     true -> UnitAction.AttackAction()
                     false -> UnitAction.MoveAction()
                 }
@@ -30,23 +32,24 @@ class ParticleFighterUnitLogic(var particleFighter: ParticleFighter) : UnitLogic
         }
     }
 
-    private fun isInAttackRange(): Boolean {
+    private fun isInAttackRange(team: Int): Boolean {
         val tarId = currentTargetId
         return when (tarId) {
             null -> false
             else -> {
-                val other = MasterListOfThings.find(tarId)?.body
-                when (other) {
-                    null -> false
-                    else -> {
+                val copyOther = Teams.findOtherEntityCopy(tarId, team)?.body
+                when (copyOther) {
+                    is Thing -> {
                         val centerOfMe = Point(particleFighter.location.x + (particleFighter.dimension.width / 2), particleFighter.location.y + (particleFighter.dimension.height / 2))
-                        val centerOfOther = Point(other.location.x + (other.dimension.width / 2), other.location.y + (other.dimension.height / 2))
-                        val distance = dist(MasterListOfThings.find(tarId)?.body?.location
-                                ?: Point(Int.MAX_VALUE, Int.MAX_VALUE), particleFighter.location)
+                        val centerOfOther = Point(copyOther.location.x + (copyOther.dimension.width / 2), copyOther.location.y + (copyOther.dimension.height / 2))
+                        val distance = dist(centerOfMe, centerOfOther)
                         when (distance < toDouble(range)) {
                             true -> true
                             false -> false
                         }
+                    }
+                    else -> {
+                        return false
                     }
                 }
             }

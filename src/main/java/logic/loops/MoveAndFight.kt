@@ -1,6 +1,6 @@
 package logic.loops
 
-import logic.unitLogic.*
+import logic.unitLogic.UnitAction
 import logic.unitLogic.logics.Attacking
 import logic.unitLogic.logics.Movement
 import logic.unitLogic.logics.Targeting
@@ -9,8 +9,8 @@ import things.Entity
 import things.MasterListOfThings
 import things.sprite.ParticleFighter
 
-object MoveAndFight {
-    fun loop() {
+object MoveAndFight : LoopBehavior {
+    override fun loopCycle() {
         MasterListOfThings.list.map { entity -> orderOfOperations(entity) }
         Thread.sleep(20)
     }

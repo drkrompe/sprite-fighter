@@ -1,5 +1,7 @@
 package threads
 
+import logic.loops.MoveAndFight
+import logic.loops.MoveAndFightTeamThreaded
 import properties.TeamsProperties
 
 object TeamSyncThreadBehavior : Runnable{
@@ -10,7 +12,7 @@ object TeamSyncThreadBehavior : Runnable{
             TeamSyncSemaphore.acquire(TeamsProperties.numberOfTeams)
             threadList.removeAll(threadList)
             for (i in 0 until TeamsProperties.numberOfTeams){
-                threadList.add(Thread(TeamThreadBehavior(i), "TeamThreadBehavior$i"))
+                threadList.add(Thread(TeamThreadBehavior(i, MoveAndFightTeamThreaded), "TeamThreadBehavior$i"))
                 threadList[i].start()
             }
         }
