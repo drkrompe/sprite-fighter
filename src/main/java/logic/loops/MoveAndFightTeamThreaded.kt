@@ -14,7 +14,7 @@ import java.util.*
 object MoveAndFightTeamThreaded : LoopBehaviorThreaded {
 
     override fun loopCycle(team: Int) {
-        Teams.getTeam(team).list.getList().map {
+        Teams.getTeam(team).entityList.getList().map {
             it.lock.acquire()
             println("\t\t\tTeam<$team> acquiredLock")
             val copiedEntity = toCopy(it)
@@ -36,19 +36,19 @@ object MoveAndFightTeamThreaded : LoopBehaviorThreaded {
                 val copiedCurrentTargetId = copiedSelf.soul.currentTargetId
                 when (copiedCurrentTargetId) {
                     is UUID -> {
-                        when (Teams.findOtherEntityCopy(otherId = copiedCurrentTargetId, selfTeam = team)?.dead) {
+                        when (Teams.findOtherEntityAndMakeCopy(otherId = copiedCurrentTargetId, selfTeamId = team)?.dead) {
                             true -> {
-                                copiedSelf.soul.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self = copiedSelf, team = team)
+                                copiedSelf.soul.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self = copiedSelf, selfTeam = team)
                                 updateSelf(copiedSelf)
                             }
                         }
                     }
                     else -> {
-                        copiedSelf.soul.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self = copiedSelf, team = team)
+                        copiedSelf.soul.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self = copiedSelf, selfTeam = team)
                         updateSelf(copiedSelf)
                     }
                 }
-                val copiedOther = Teams.findOtherEntityCopy(copiedCurrentTargetId, team)
+                val copiedOther = Teams.findOtherEntityAndMakeCopy(copiedCurrentTargetId, team)
                 when (copiedSelf.soul.determineNextAction(copiedSelf.team)) {
                     is UnitAction.MoveAction -> {
                         println("\t\t\t\tMove Action")
@@ -69,12 +69,12 @@ object MoveAndFightTeamThreaded : LoopBehaviorThreaded {
     private fun updateOther(other: Entity?) {
         when (other) {
             is Entity -> {
-                Teams.getTeam(other.team).list.updateEntity(other.id, other)
+                Teams.getTeam(other.team).entityList.updateEntity(other.id, other)
             }
         }
     }
 
     private fun updateSelf(self: Entity) {
-        Teams.getTeam(self.team).list.updateEntity(self.id, self)
+        Teams.getTeam(self.team).entityList.updateEntity(self.id, self)
     }
 }

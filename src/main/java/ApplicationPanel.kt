@@ -1,6 +1,5 @@
 import properties.ScenerioProperties
 import drawable.two.dimensional.background.BackgroundDefault
-import drawable.two.dimensional.things.sprite.ImageFighter
 import drawable.two.dimensional.things.sprite.ParticleFighter
 import shared.resources.Teams
 import things.toCopy
@@ -29,7 +28,7 @@ class ApplicationPanel : JPanel(), Runnable {
         super.paintComponent(g)
         BackgroundDefault.draw(g)
         Teams.getTeams().map {
-            it.list.getList().map {
+            it.entityList.getList().map {
                 it.lock.acquire()
                 val copiedEntity = toCopy(it)
                 it.lock.release()
@@ -43,7 +42,7 @@ class ApplicationPanel : JPanel(), Runnable {
             }
         }
         Teams.getTeams().map {
-            it.list.getList().map {
+            it.entityList.getList().map {
                 it.lock.acquire()
                 val copiedEntity = toCopy(it)
                 it.lock.release()

@@ -13,7 +13,7 @@ class TeamThreadBehavior(private val team: Int, private val loopBehavior: LoopBe
     }
 
     private fun tickAction() {
-        Teams.getTeam(which = team).list.getList().map {
+        Teams.getTeam(which = team).entityList.getList().map {
             doLoopCycleBehavior()
         }
     }

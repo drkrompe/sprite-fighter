@@ -9,27 +9,24 @@ import things.Entity as CopiedEntity
 object Teams {
     private var list = mutableListOf<Team>()
 
-    fun findOtherEntityCopy(otherId: UUID?, selfTeam: Int): CopiedEntity? {
+    fun findOtherEntityAndMakeCopy(otherId: UUID?, selfTeamId: Int): CopiedEntity? {
         var foundEntity: CopiedEntity? = null
-        when (otherId) {
-            is UUID -> list.map {
-                when (it.team == selfTeam) {
-                    false -> it.list.getList().map {
-                        it.lock.acquire()
-                        when (it.id == otherId) {
-                            true -> {
-                                foundEntity = toCopy(it)
-                                it.lock.release()
-                                return foundEntity
-                            }
-                        }
-                        it.lock.release()
+
+        list.map { targetedTeam ->
+            if (targetedTeam.teamId != selfTeamId) {
+                targetedTeam.entityList.getList().map { entity ->
+                    entity.lock.acquire()
+                    if (entity.id == otherId) {
+                        foundEntity = toCopy(entity)
+                        entity.lock.release()
+                        return foundEntity
                     }
-                    true -> {
-                    }
+                    entity.lock.release()
+
                 }
             }
         }
+
         return foundEntity
     }
 
@@ -47,7 +44,7 @@ object Teams {
     }
 
     fun getOther(self: Int): Team? {
-        if (self > TeamsProperties.numberOfTeams - 1) {
+        if (self < 0 || self > TeamsProperties.numberOfTeams - 1) {
             throw Exception("Called getOther with invalid value")
         }
 
@@ -66,5 +63,4 @@ object Teams {
             getTeam(other)
         }
     }
-}
 }

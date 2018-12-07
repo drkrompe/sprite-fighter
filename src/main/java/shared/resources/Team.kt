@@ -1,5 +1,5 @@
 package shared.resources
 
-class Team(val team: Int) {
-    val list = SharingList()
+class Team(val teamId: Int) {
+    val entityList = SharingList()
 }

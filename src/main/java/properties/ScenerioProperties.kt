@@ -25,7 +25,7 @@ object ScenerioProperties {
                     .map { newParticleFighter(it, Dimension(10, 10)) }
                     .map { newParticleFighterUnitLogic(it) }
                     .map { newEntity(it, team) }
-                    .map { Teams.getTeam(team).list.addEntity(it) }
+                    .map { Teams.getTeam(team).entityList.addEntity(it) }
         }
 
         println("done")
