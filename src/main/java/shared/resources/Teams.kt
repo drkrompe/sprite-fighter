@@ -47,25 +47,24 @@ object Teams {
     }
 
     fun getOther(self: Int): Team? {
-        when (self > TeamsProperties.numberOfTeams - 1) {
-            true -> throw Exception("Called getOther with invalid value")
+        if (self > TeamsProperties.numberOfTeams - 1) {
+            throw Exception("Called getOther with invalid value")
         }
-        return when (TeamsProperties.numberOfTeams) {
-            1 -> return null
-            2 -> {
-                when (self) {
-                    0 -> getTeam(1)
-                    1 -> getTeam(0)
-                    else -> null // will never happen
-                }
+
+        return if (TeamsProperties.numberOfTeams == 2) {
+            if (self == 0) {
+                getTeam(1)
+            } else {
+                getTeam(0)
             }
-            else -> {
-                var other = (Math.random() * TeamsProperties.numberOfTeams).roundToInt()
-                while (Math.round(other.toFloat()) == self) {
-                    other = (Math.random() * TeamsProperties.numberOfTeams).roundToInt()
-                }
-                getTeam(other)
+        } else {
+            // TODO not do stupid things like this. Find better way of handling > 2 teams.
+            var other = (Math.random() * TeamsProperties.numberOfTeams).roundToInt()
+            while (Math.round(other.toFloat()) == self) {
+                other = (Math.random() * TeamsProperties.numberOfTeams).roundToInt()
             }
+            getTeam(other)
         }
     }
+}
 }
