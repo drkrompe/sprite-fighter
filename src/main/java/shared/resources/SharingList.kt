@@ -29,8 +29,9 @@ class SharingList {
 
     fun removeEntity(id: UUID) {
         val entity = getEntity(id)
-        entity?.lock?.acquire()
-        list.remove(entity)
+        entity?.lock?.acquire().run {
+            list.remove(entity)
+        }
     }
 
     fun getList(): List<Entity> {

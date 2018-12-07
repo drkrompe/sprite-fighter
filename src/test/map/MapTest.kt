@@ -47,7 +47,7 @@ class MapTest {
         val curTime = System.currentTimeMillis()
         val list = largeMap[Point(250, 760)]
         val endTime = System.currentTimeMillis()
-        println("Total time -> " + (endTime - curTime) + " list $list")
+        println("Total time -> " + (endTime - curTime) + "\n list $list")
     }
 
     private val newParticleFighter: (Point, Dimension) -> ParticleFighter = { p, d -> ParticleFighter(location = p, dimension = d) }

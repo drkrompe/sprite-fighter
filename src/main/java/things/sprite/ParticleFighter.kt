@@ -11,7 +11,7 @@ class ParticleFighter(override var location: Point, override val dimension: Dime
     override var health: Int = 100
     override var nextLocation: Point = Point()
     val unitLogic: UnitLogic = ParticleFighterUnitLogic(this)
-    var status = UnitStatus.Moving()
+    private var status = UnitStatus.Moving()
 
     fun statusCompare(other: UnitStatus): Boolean {
         return (this.status.javaClass) == other.javaClass
