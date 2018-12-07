@@ -8,7 +8,7 @@ import java.awt.Graphics
 import javax.swing.JPanel
 
 class ApplicationPanel : JPanel(), Runnable {
-    val threadLoop = Thread(this, "Game-Thread")
+    private val threadLoop = Thread(this, "Game-Thread")
 
     init {
         isVisible = true
@@ -27,11 +27,14 @@ class ApplicationPanel : JPanel(), Runnable {
     override fun paintComponent(g: Graphics?) {
         super.paintComponent(g)
         BackgroundDefault.draw(g)
-        Teams.getTeams().map {
-            it.entityList.getList().map {
+
+        Teams.getTeams().map { team ->
+            team.entityList.getList().map {
+
                 it.lock.acquire()
                 val copiedEntity = toCopy(it)
                 it.lock.release()
+
                 when(copiedEntity.draw){
                     is ParticleFighter -> {
                         when(copiedEntity.dead){
@@ -41,11 +44,14 @@ class ApplicationPanel : JPanel(), Runnable {
                 }
             }
         }
-        Teams.getTeams().map {
-            it.entityList.getList().map {
+
+        Teams.getTeams().map { team ->
+            team.entityList.getList().map {
+
                 it.lock.acquire()
                 val copiedEntity = toCopy(it)
                 it.lock.release()
+
                 when(copiedEntity.draw){
                     is ParticleFighter -> {
                         when(copiedEntity.dead){

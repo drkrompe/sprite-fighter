@@ -8,7 +8,7 @@ object TeamSyncThreadBehavior : Runnable {
         val threadList = mutableListOf<Thread>()
         println("\tSync Thread")
         while (true) {
-            Thread.sleep(100)
+            //Thread.sleep(100)
             TeamSyncSemaphore.acquire(TeamsProperties.numberOfTeams)
             println("\tSync Thread - acquiredSyncLock")
             threadList.removeAll(threadList)

@@ -10,16 +10,16 @@ import shared.resources.Entity as SharedEntity
 
 object TargetingThreadSafe {
 
-    fun findNearestNonDeadTarget(self: Entity, selfTeam: Int): UUID? {
-        return distanceFromSelfToOpposingTeamMembers(self, selfTeam)
+    fun findNearestNonDeadTarget(self: Entity): UUID? {
+        return distanceFromSelfToOpposingTeamMembers(self)
                 .minBy { it.value }
                 ?.key
     }
 
-    private fun distanceFromSelfToOpposingTeamMembers(self: Entity, team: Int): Map<UUID, Double> {
+    private fun distanceFromSelfToOpposingTeamMembers(self: Entity): Map<UUID, Double> {
         val selfToTargetsDistance = mutableMapOf<UUID, Double>()
 
-        Teams.getOther(team)?.run {
+        Teams.getOther(self.team)?.run {
             entityList.getList().map { otherTeamEntity ->
 
                 otherTeamEntity.lock.acquire()

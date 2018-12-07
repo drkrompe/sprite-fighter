@@ -11,7 +11,7 @@ import things.sprite.ParticleFighter
 import things.toCopy
 import java.util.*
 
-object MoveAndFightTeamThreaded : LoopBehaviorThreaded {
+object MoveAndFightTeamThreaded_AlwaysNewTarget : LoopBehaviorThreaded {
 
     override fun loopCycle(team: Int) {
         Teams.getTeam(team).entityList.getList().map {
@@ -33,29 +33,20 @@ object MoveAndFightTeamThreaded : LoopBehaviorThreaded {
             is ParticleFighterUnitLogic -> {
                 println("\t\t\t\tParticleFighterUnitLogic")
 
-                copiedSelf.soul.updateCurrentTargetIfRequired(copiedSelf)
+                val currentTargetId = copiedSelf.soul.currentTargetId
+                copiedSelf.soul.updateCurrentTargetIfRequired(copiedSelf, currentTargetId)
                 updateSelf(copiedSelf)
 
-                val copiedOther = Teams.findOtherEntityAndMakeCopy(copiedSelf.soul.currentTargetId, team)
+                val copiedOther = Teams.findOtherEntityAndMakeCopy(currentTargetId, team)
                 takeActionInRelationToOther(copiedSelf, copiedOther, copiedSelf.soul)
             }
         }
     }
 
-    private fun ParticleFighterUnitLogic.updateCurrentTargetIfRequired(self: Entity): ParticleFighterUnitLogic {
-        when (this.currentTargetId) {
-            is UUID -> {
-                val otherEntityCopy = Teams.findOtherEntityAndMakeCopy(otherId = this.currentTargetId, selfTeamId = self.team)
-                when (otherEntityCopy?.dead) {
-                    true -> {
-                        this.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self = self)
-                    }
-                }
-            }
-            else -> {
-                this.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self = self)
-            }
-        }
+    private fun ParticleFighterUnitLogic.updateCurrentTargetIfRequired(self: Entity, targetId: UUID?): ParticleFighterUnitLogic {
+
+        this.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self)
+
         return this
     }
 

@@ -5,20 +5,15 @@ import java.util.*
 class SharingList {
     private val list = mutableListOf<Entity>()
 
-    fun getEntity(id: UUID): Entity? {
+    private fun getEntity(id: UUID): Entity? {
         return list.find { it.id == id }
     }
 
     fun updateEntity(id: UUID, copiedEntity: things.Entity) {
-        val entity = getEntity(id)
-        when (entity) {
-            null -> {
-            }
-            else -> {
-                println("\t\t\t\tUpdatingEntity")
-                shared.resources.updateEntity(entity, copiedEntity)
-                println("\t\t\t\tUpdatingEntity - finish")
-            }
+        getEntity(id)?.run {
+            println("\t\t\t\tUpdatingEntity")
+            shared.resources.updateEntity(this, copiedEntity)
+            println("\t\t\t\tUpdatingEntity - finish")
         }
     }
 
