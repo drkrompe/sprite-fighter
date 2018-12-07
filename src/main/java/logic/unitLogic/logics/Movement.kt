@@ -14,59 +14,47 @@ object Movement {
 
         val xSlope = target.location.x - self.location.x
         val ySlope = target.location.y - self.location.y
-        self.nextLocation = someDistanceLogic(xSlope = xSlope, ySlope = ySlope, self = self)
-        val checkedPoint = collisionCheck(self = self, target = target)
-
-        return when (self.nextLocation == checkedPoint) {
-            true -> self.nextLocation
-            false -> {checkedPoint}
-        }
+        return (self to self.naiveNextLocation(xSlope = xSlope, ySlope = ySlope))
+                .ifCollisionWithTargetReturnCorrectedLocation(target)
     }
 
-    private fun collisionCheck(self: Thing, target: Thing?): Point {
-        val ponderedPoint = Point(self.nextLocation.x, self.nextLocation.y)
+    private fun Pair<Thing, Point>.ifCollisionWithTargetReturnCorrectedLocation(target: Thing?): Point {
+        val ponderedPoint = Point(second.x, second.y)
         if (target == null) {
-            return self.nextLocation
+            return second
         }
         // check collision right/left
-        when (ponderedPoint.x != self.location.x) {
-            true -> {
-                when (ponderedPoint.x - self.location.x) {
-                    1 -> {
-                        when (ponderedPoint.x + self.dimension.width > target.location.x) {
-                            true -> ponderedPoint.x = self.location.x
-                        }
+        if (ponderedPoint.x != first.location.x) {
+            when (ponderedPoint.x - first.location.x) {
+                1 ->
+                    if (ponderedPoint.x + first.dimension.width > target.location.x) {
+                        ponderedPoint.x = first.location.x
                     }
-                    -1 -> {
-                        when (ponderedPoint.x < target.location.x + target.dimension.width) {
-                            true -> ponderedPoint.x = self.location.x
-                        }
+                -1 ->
+                    if (ponderedPoint.x < target.location.x + target.dimension.width) {
+                        ponderedPoint.x = first.location.x
                     }
-                }
+
             }
         }
         // check collision down/up
-        when (ponderedPoint.y != self.location.y) {
-            true -> {
-                when (ponderedPoint.y - self.location.y) {
-                    1 -> {
-                        when (ponderedPoint.y + self.dimension.height > target.location.y) {
-                            true -> ponderedPoint.y = self.location.y
-                        }
+        if (ponderedPoint.y != first.location.y) {
+            when (ponderedPoint.y - first.location.y) {
+                1 ->
+                    if (ponderedPoint.y + first.dimension.height > target.location.y) {
+                        ponderedPoint.y = first.location.y
                     }
-                    -1 -> {
-                        when (ponderedPoint.y < target.location.y + target.dimension.height) {
-                            true -> ponderedPoint.y = self.location.y
-                        }
+                -1 ->
+                    if (ponderedPoint.y < target.location.y + target.dimension.height) {
+                        ponderedPoint.y = first.location.y
                     }
-                }
             }
         }
         return ponderedPoint
     }
 
-    private fun someDistanceLogic(xSlope: Int, ySlope: Int, self: Thing): Point {
-        val checkedPoint = Point(self.location.x, self.location.y)
+    private fun Thing.naiveNextLocation(xSlope: Int, ySlope: Int): Point {
+        val checkedPoint = Point(location.x, location.y)
         if (abs(xSlope) > abs(ySlope)) {
             when (xSlope > 0) {
                 true -> checkedPoint.x++
@@ -78,20 +66,26 @@ object Movement {
                 false -> checkedPoint.y--
             }
         } else if (xSlope == ySlope && xSlope != 0) {
-            if (ySlope > 0) {
-                checkedPoint.y++
-                checkedPoint.x++
-            } else {
-                checkedPoint.y--
-                checkedPoint.x--
+            when (ySlope > 0) {
+                true -> {
+                    checkedPoint.y++
+                    checkedPoint.x++
+                }
+                false -> {
+                    checkedPoint.y--
+                    checkedPoint.x--
+                }
             }
         } else if (abs(xSlope) == abs(ySlope) && xSlope != 0) {
-            if (xSlope > 0 && ySlope < 0) {
-                checkedPoint.y--
-                checkedPoint.x++
-            } else {
-                checkedPoint.y++
-                checkedPoint.x--
+            when (xSlope > 0 && ySlope < 0) {
+                true -> {
+                    checkedPoint.y--
+                    checkedPoint.x++
+                }
+                false -> {
+                    checkedPoint.y++
+                    checkedPoint.x--
+                }
             }
         }
         return checkedPoint
