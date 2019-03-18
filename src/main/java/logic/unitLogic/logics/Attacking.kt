@@ -4,17 +4,16 @@ import things.Entity
 import things.sprite.ParticleFighter
 
 object Attacking {
-
     fun attack(other: Entity?, attackVal: Int) {
-        when (other?.body) {
-            is ParticleFighter -> {
-                other.body.health -= attackVal
-                when (other.body.health < 0) {
-                    true -> {
-                        other.dead = true
-                    }
-                }
+        if (other?.body is ParticleFighter) {
+            other.body.health -= attackVal
+            if (other.isDead()) {
+                other.dead = true
             }
         }
+    }
+
+    private fun Entity.isDead(): Boolean {
+        return this.body.health < 0
     }
 }

@@ -1,6 +1,5 @@
 package threads
 
-import logic.loops.LoopBehaviorThreaded
 import shared.resources.Teams
 
 class TeamThreadBehavior(private val team: Int, private val loopBehavior: LoopBehaviorThreaded) : Runnable {

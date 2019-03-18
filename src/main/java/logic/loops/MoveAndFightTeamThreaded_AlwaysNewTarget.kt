@@ -11,9 +11,9 @@ import things.sprite.ParticleFighter
 import things.toCopy
 import java.util.*
 
-object MoveAndFightTeamThreaded_AlwaysNewTarget : LoopBehaviorThreaded {
+object MoveAndFightTeamThreaded_AlwaysNewTarget {
 
-    override fun loopCycle(team: Int) {
+    fun loopCycle(team: Int) {
         Teams.getTeam(team).entityList.getList().map {
             it.lock.acquire()
             println("\t\t\tTeam<$team> acquiredLock")
