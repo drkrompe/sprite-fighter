@@ -7,7 +7,7 @@ import things.sprite.ParticleFighter
 import java.awt.Dimension
 import java.awt.Point
 
-object ScenerioProperties {
+object ScenarioProperties {
 
     private val newParticleFighter: (Point, Dimension) -> ParticleFighter = { p, d -> ParticleFighter(location = p, dimension = d) }
     private val newParticleFighterUnitLogic: (ParticleFighter) -> ParticleFighterUnitLogic = { body -> ParticleFighterUnitLogic(particleFighter = body) }
@@ -21,11 +21,11 @@ object ScenerioProperties {
                 genList.add(null)
             }
             Teams.createTeam(team)
-            genList.map { genTeamPoint(team) }
+            genList.asSequence().map { genTeamSpawnPoint(team) }
                     .map { newParticleFighter(it, Dimension(10, 10)) }
                     .map { newParticleFighterUnitLogic(it) }
                     .map { newEntity(it, team) }
-                    .map { Teams.getTeam(team).entityList.addEntity(it) }
+                    .map { Teams.getTeam(team).entityList.addEntity(it) }.toList()
         }
 
         println("done")
@@ -37,7 +37,7 @@ object ScenerioProperties {
         return Point(x, y)
     }
 
-    private fun genTeamPoint(team: Int): Point {
+    private fun genTeamSpawnPoint(team: Int): Point {
         when (team) {
             0 -> {
                 val x = (Math.random() * 200).toInt()

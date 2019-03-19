@@ -1,43 +1,43 @@
 package logic.unitLogic.logics
 
-import jdk.nashorn.internal.runtime.JSType
+import logic.calculations.Distance
 import shared.resources.Teams
 import things.Entity
 import things.toCopy
-import java.awt.Point
 import java.util.*
 import shared.resources.Entity as SharedEntity
 
-object TargetingThreadSafe {
+interface TargetingThreadSafe : Distance {
 
     fun findNearestNonDeadTarget(self: Entity): UUID? {
-        return distanceFromSelfToOpposingTeamMembers(self)
+        return distanceFromSelfToEnemyEntities(self)
                 .minBy { it.value }
                 ?.key
     }
 
-    private fun distanceFromSelfToOpposingTeamMembers(self: Entity): Map<UUID, Double> {
-        val selfToTargetsDistance = mutableMapOf<UUID, Double>()
+    private fun distanceFromSelfToEnemyEntities(self: Entity): Map<UUID, Double> {
+        val distancesToOthersMap = mutableMapOf<UUID, Double>()
+        self.calculateDistancesToOthers(distancesToOthersMap)
+        return distancesToOthersMap.toMap()
+    }
 
-        Teams.getOther(self.team)?.run {
-            entityList.getList().map { otherTeamEntity ->
+    private fun Entity.calculateDistancesToOthers(distancesToOthersMap: MutableMap<UUID, Double>) {
+        Teams.getOtherTeam(this.team)?.run {
+            this.entityList.getList().map { otherTeamEntity ->
 
                 otherTeamEntity.lock.acquire()
-                val copiedOtherEntity = toCopy(otherTeamEntity)
+                val otherEntity = toCopy(otherTeamEntity)
                 otherTeamEntity.lock.release()
 
-                if (!copiedOtherEntity.dead) {
-                    selfToTargetsDistance[copiedOtherEntity.id] = dist(self.body.location, copiedOtherEntity.body.location)
+                if (otherEntity.isNotDead()) {
+                    val distanceToOther = distanceBetween(this@calculateDistancesToOthers.body.location, otherEntity.body.location)
+                    distancesToOthersMap[otherEntity.id] = distanceToOther
                 }
             }
         }
-
-        return selfToTargetsDistance.toMap()
     }
 
-    val dist = { d1: Point, d2: Point ->
-        Math.sqrt(((JSType.toDouble(d1.x) - JSType.toDouble(d2.x)) * (JSType.toDouble(d1.x) - JSType.toDouble(d2.x)))
-                + ((JSType.toDouble(d1.y) - JSType.toDouble(d2.y)) * ((JSType.toDouble(d1.y) - JSType.toDouble(d2.y)))))
+    private fun Entity.isNotDead(): Boolean {
+        return !this.dead
     }
-
 }

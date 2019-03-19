@@ -13,7 +13,7 @@ object TeamSyncThreadBehavior : Runnable {
             println("\tSync Thread - acquiredSyncLock")
             threadList.removeAll(threadList)
             for (i in 0 until TeamsProperties.numberOfTeams) {
-                threadList.add(Thread(TeamThreadBehavior(i, MoveAndFightTeamThreaded), "TeamThreadBehavior$i"))
+                threadList.add(Thread(TeamThreadBehavior(i, object : MoveAndFightTeamThreaded {}), "TeamThreadBehavior$i"))
                 threadList[i].start()
             }
         }

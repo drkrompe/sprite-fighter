@@ -11,9 +11,9 @@ import things.sprite.ParticleFighter
 import things.toCopy
 import java.util.*
 
-object MoveAndFightTeamThreaded {
+interface MoveAndFightTeamThreaded : LoopBehaviorThreaded, Attacking, Movement, TargetingThreadSafe {
 
-    fun loopCycle(team: Int) {
+    override fun loopCycle(team: Int) {
         Teams.getTeam(team).entityList.getList().map {
             it.lock.acquire()
             println("\t\t\tTeam<$team> acquiredLock")
@@ -36,7 +36,7 @@ object MoveAndFightTeamThreaded {
                 copiedSelf.soul.updateCurrentTargetIfRequired(copiedSelf)
                 updateSelf(copiedSelf)
 
-                val copiedOther = Teams.findOtherEntityAndMakeCopy(copiedSelf.soul.currentTargetId, team)
+                val copiedOther = Teams.findOtherEntityByUUID(copiedSelf.soul.currentTargetId, team)
                 takeActionInRelationToOther(copiedSelf, copiedOther, copiedSelf.soul)
             }
         }
@@ -45,15 +45,15 @@ object MoveAndFightTeamThreaded {
     private fun ParticleFighterUnitLogic.updateCurrentTargetIfRequired(self: Entity): ParticleFighterUnitLogic {
         when (this.currentTargetId) {
             is UUID -> {
-                val otherEntityCopy = Teams.findOtherEntityAndMakeCopy(otherId = this.currentTargetId, selfTeamId = self.team)
+                val otherEntityCopy = Teams.findOtherEntityByUUID(otherId = this.currentTargetId, selfTeamId = self.team)
                 when (otherEntityCopy?.dead) {
                     true -> {
-                        this.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self = self)
+                        this.currentTargetId = findNearestNonDeadTarget(self = self)
                     }
                 }
             }
             else -> {
-                this.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self = self)
+                this.currentTargetId = findNearestNonDeadTarget(self = self)
             }
         }
         return this
@@ -63,13 +63,13 @@ object MoveAndFightTeamThreaded {
         when (copiedSelf.soul.determineNextAction(copiedSelf.team)) {
             is UnitAction.MoveAction -> {
                 println("\t\t\t\tMove Action")
-                copiedSelf.body.location = Movement.determineNextLocation(self = copiedSelf.body, target = copiedOther?.body)
+                copiedSelf.body.location = determineNextLocation(self = copiedSelf.body, target = copiedOther?.body)
                 soul.particleFighter = (copiedSelf.body as ParticleFighter)
                 updateSelf(copiedSelf)
             }
             is UnitAction.AttackAction -> {
                 println("\t\t\t\tAttack Action")
-                Attacking.attack(copiedOther, 1)
+                attack(copiedOther, 1)
                 updateOther(copiedOther)
             }
         }

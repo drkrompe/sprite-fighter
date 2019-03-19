@@ -20,18 +20,15 @@ data class Entity(
 
 fun updateEntity(entity: Entity, copiedEntity: CopiedEntity) {
     entity.lock.acquire()
+
     entity.body.location = copiedEntity.body.location
     entity.body.health = copiedEntity.body.health
     entity.body.nextLocation = copiedEntity.body.nextLocation
     entity.dead = copiedEntity.dead
-    when (entity.soul) {
-        is ParticleFighterUnitLogic -> {
-            when (copiedEntity.soul) {
-                is ParticleFighterUnitLogic -> {
-                    entity.soul.currentTargetId = copiedEntity.soul.currentTargetId
-                }
-            }
-        }
+
+    if (entity.soul is ParticleFighterUnitLogic && copiedEntity.soul is ParticleFighterUnitLogic) {
+        entity.soul.currentTargetId = copiedEntity.soul.currentTargetId
     }
+
     entity.lock.release()
 }

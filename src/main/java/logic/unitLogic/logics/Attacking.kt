@@ -3,7 +3,8 @@ package logic.unitLogic.logics
 import things.Entity
 import things.sprite.ParticleFighter
 
-object Attacking {
+interface Attacking {
+
     fun attack(other: Entity?, attackVal: Int) {
         if (other?.body is ParticleFighter) {
             other.body.health -= attackVal

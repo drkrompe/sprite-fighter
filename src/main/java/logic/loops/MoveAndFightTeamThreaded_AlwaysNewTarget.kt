@@ -11,9 +11,9 @@ import things.sprite.ParticleFighter
 import things.toCopy
 import java.util.*
 
-object MoveAndFightTeamThreaded_AlwaysNewTarget {
+interface MoveAndFightTeamThreaded_AlwaysNewTarget : LoopBehaviorThreaded, Attacking, Movement, TargetingThreadSafe {
 
-    fun loopCycle(team: Int) {
+    override fun loopCycle(team: Int) {
         Teams.getTeam(team).entityList.getList().map {
             it.lock.acquire()
             println("\t\t\tTeam<$team> acquiredLock")
@@ -37,7 +37,7 @@ object MoveAndFightTeamThreaded_AlwaysNewTarget {
                 copiedSelf.soul.updateCurrentTargetIfRequired(copiedSelf, currentTargetId)
                 updateSelf(copiedSelf)
 
-                val copiedOther = Teams.findOtherEntityAndMakeCopy(currentTargetId, team)
+                val copiedOther = Teams.findOtherEntityByUUID(currentTargetId, team)
                 takeActionInRelationToOther(copiedSelf, copiedOther, copiedSelf.soul)
             }
         }
@@ -45,7 +45,7 @@ object MoveAndFightTeamThreaded_AlwaysNewTarget {
 
     private fun ParticleFighterUnitLogic.updateCurrentTargetIfRequired(self: Entity, targetId: UUID?): ParticleFighterUnitLogic {
 
-        this.currentTargetId = TargetingThreadSafe.findNearestNonDeadTarget(self)
+        this.currentTargetId = findNearestNonDeadTarget(self)
 
         return this
     }
@@ -54,13 +54,13 @@ object MoveAndFightTeamThreaded_AlwaysNewTarget {
         when (copiedSelf.soul.determineNextAction(copiedSelf.team)) {
             is UnitAction.MoveAction -> {
                 println("\t\t\t\tMove Action")
-                copiedSelf.body.location = Movement.determineNextLocation(self = copiedSelf.body, target = copiedOther?.body)
+                copiedSelf.body.location = determineNextLocation(self = copiedSelf.body, target = copiedOther?.body)
                 soul.particleFighter = (copiedSelf.body as ParticleFighter)
                 updateSelf(copiedSelf)
             }
             is UnitAction.AttackAction -> {
                 println("\t\t\t\tAttack Action")
-                Attacking.attack(copiedOther, 1)
+                attack(copiedOther, 1)
                 updateOther(copiedOther)
             }
         }

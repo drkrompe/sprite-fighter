@@ -1,4 +1,4 @@
-import properties.ScenerioProperties
+import properties.ScenarioProperties
 import drawable.two.dimensional.background.BackgroundDefault
 import drawable.two.dimensional.things.sprite.ParticleFighter
 import shared.resources.Teams
@@ -16,7 +16,7 @@ class ApplicationPanel : JPanel(), Runnable {
     }
 
     override fun run() {
-        ScenerioProperties.setup()
+        ScenarioProperties.setup()
         Thread(TeamSyncThreadBehavior, "Master-TeamSync-Thread").start()
         println("Created master thread")
         while(true){

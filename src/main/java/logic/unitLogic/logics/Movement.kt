@@ -4,7 +4,7 @@ import things.Thing
 import java.awt.Point
 import java.lang.Math.abs
 
-object Movement {
+interface Movement {
 
     fun determineNextLocation(self: Thing, target: Thing?): Point {
         self.nextLocation = Point(self.location.x, self.location.y)

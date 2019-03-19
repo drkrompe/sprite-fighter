@@ -3,31 +3,27 @@ package shared.resources
 import properties.TeamsProperties
 import things.toCopy
 import java.util.*
-import kotlin.math.roundToInt
 import things.Entity as CopiedEntity
 
 object Teams {
     private var list = mutableListOf<Team>()
 
-    fun findOtherEntityAndMakeCopy(otherId: UUID?, selfTeamId: Int): CopiedEntity? {
-        var foundEntity: CopiedEntity? = null
+    fun findOtherEntityByUUID(otherId: UUID?, selfTeamId: Int): CopiedEntity? {
+        var copyOfFoundEntity: CopiedEntity? = null
 
         list.map { targetedTeam ->
             if (targetedTeam.teamId != selfTeamId) {
-                targetedTeam.entityList.getList().map { entity ->
-                    entity.lock.acquire()
-                    if (entity.id == otherId) {
-                        foundEntity = toCopy(entity)
-                        entity.lock.release()
-                        return foundEntity
-                    }
-                    entity.lock.release()
-
-                }
+                targetedTeam.entityList.getList()
+                        .find { entity -> entity.id == otherId }
+                        ?.let { foundEntity ->
+                            foundEntity.lock.acquire()
+                            copyOfFoundEntity = toCopy(foundEntity)
+                            foundEntity.lock.release()
+                        }
             }
         }
 
-        return foundEntity
+        return copyOfFoundEntity
     }
 
     fun getTeams(): List<Team> {
@@ -43,24 +39,14 @@ object Teams {
         return list[team]
     }
 
-    fun getOther(self: Int): Team? {
+    fun getOtherTeam(self: Int): Team? {
         if (self < 0 || self > TeamsProperties.numberOfTeams - 1) {
-            throw Exception("Called getOther with invalid value")
+            throw Exception("Called getOtherTeam with invalid value")
         }
-
-        return if (TeamsProperties.numberOfTeams == 2) {
-            if (self == 0) {
-                getTeam(1)
-            } else {
-                getTeam(0)
-            }
-        } else {
-            // TODO not do stupid things like this. Find better way of handling > 2 teams.
-            var other = (Math.random() * TeamsProperties.numberOfTeams).roundToInt()
-            while (Math.round(other.toFloat()) == self) {
-                other = (Math.random() * TeamsProperties.numberOfTeams).roundToInt()
-            }
-            getTeam(other)
+        var teamNumberGuess = 0
+        while (self == teamNumberGuess) {
+            teamNumberGuess = (teamNumberGuess + 1) % TeamsProperties.numberOfTeams
         }
+        return getTeam(teamNumberGuess)
     }
 }
